@@ -8,7 +8,7 @@ import (
 
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,7 +18,7 @@ func GetData(c *gin.Context) {
 	var response Model.BaseResponseModel
 
 	// Read the body of the request
-	body, err := ioutil.ReadAll(c.Request.Body)
+	body, err := io.ReadAll(c.Request.Body)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to read request body"})
 		return
